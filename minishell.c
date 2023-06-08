@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 23:01:49 by tayou             #+#    #+#             */
-/*   Updated: 2023/06/08 23:22:22 by tayou            ###   ########.fr       */
+/*   Updated: 2023/06/09 00:10:59 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,21 @@ void	handler(int signal_number)
 	}
 }
 
+void	print_2d_array(char **string)
+{
+	int	i;
+
+	i = 0;
+	while (string[i] != (void *) 0)
+	{
+		printf("string[%d]: %se\n", i, string[i]);
+		i++;
+	}
+}
+
 int	main(void)
 {
+	char	**split_string;
 	char	*line;
 	struct termios	term;
 
@@ -36,6 +49,11 @@ int	main(void)
 	while (1)
 	{
 		line = readline("minishell> ");
+		printf("line: %s\n", line);
+		split_string = ft_split(line, '|');
+		print_2d_array(split_string);
+		if (split_string[0][0] == ' ')
+			printf("first string[0] is space character.\n");
 		if (line == (void *) 0)
 		{
 			printf("\033[1A");
