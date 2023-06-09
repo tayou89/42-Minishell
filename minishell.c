@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 23:01:49 by tayou             #+#    #+#             */
-/*   Updated: 2023/06/09 00:10:59 by tayou            ###   ########.fr       */
+/*   Updated: 2023/06/09 15:12:23 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,20 @@ void	print_2d_array(char **string)
 	i = 0;
 	while (string[i] != (void *) 0)
 	{
-		printf("string[%d]: %se\n", i, string[i]);
+		printf("string[%d]: %s\n", i, string[i]);
 		i++;
 	}
 }
 
 int	main(void)
 {
+//	t_data	data;
 	char	**split_string;
 	char	*line;
 	struct termios	term;
 
+//	check_argc(argc)
+//	make_initial_setting(envp, &data);
 	tcgetattr(STDIN, &term);
 	term.c_lflag &= ~(T_ECHOCTL);
 	tcsetattr(STDIN, T_TCSANOW, &term);
@@ -50,7 +53,7 @@ int	main(void)
 	{
 		line = readline("minishell> ");
 		printf("line: %s\n", line);
-		split_string = ft_split(line, '|');
+		split_string = ft_split(line, ' ');
 		print_2d_array(split_string);
 		if (split_string[0][0] == ' ')
 			printf("first string[0] is space character.\n");

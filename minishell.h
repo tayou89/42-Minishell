@@ -6,7 +6,7 @@
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 22:46:35 by tayou             #+#    #+#             */
-/*   Updated: 2023/06/08 23:08:37 by tayou            ###   ########.fr       */
+/*   Updated: 2023/06/09 15:12:38 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,31 @@
 
 # define S_SIGINT	2
 # define S_SIGQUIT	3
-# define S_SIG_IGN	(void (*)())1
+# define S_SIG_IGN	(void (*)(int))1
+# define S_SIG_ERR	((void (*)(int))-1)
 
+typedef struct s_args
+{
+	char	**envp;
+}	t_args;
 
+typedef struct s_user
+{
+	char	*input;
+	char	**split_input;
+}	t_user;
 
+typedef struct s_terminal
+{
+	struct termios	initial_setting;
+	struct termios	changed_setting;
+}	t_terminal;
 
-
+typedef struct s_data
+{
+	t_args		args;
+	t_user		user;
+	t_terminal	terminal;
+}	t_data;
 
 #endif
