@@ -6,7 +6,7 @@
 #    By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/07 12:45:09 by tayou             #+#    #+#              #
-#    Updated: 2023/06/09 11:53:27 by tayou            ###   ########.fr        #
+#    Updated: 2023/06/10 19:29:58 by tayou            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,11 @@ RMFLAGS = -rf
 LIBFT = ./libft/libft.a
 LIBFT_DIR = ./libft
 SRC_FILE = minishell \
+		   check_argc \
+		   make_initial_setting \
+		   handle_signal \
+		   get_input_and_process_data \
+		   check_line_exception
 
 SRC = $(addsuffix .c, $(SRC_FILE))
 OBJ = $(addsuffix .o, $(SRC_FILE))

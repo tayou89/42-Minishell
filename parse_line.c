@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   parse_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/16 23:43:07 by tayou             #+#    #+#             */
-/*   Updated: 2023/06/10 23:51:27 by tayou            ###   ########.fr       */
+/*   Created: 2023/06/10 16:19:27 by tayou             #+#    #+#             */
+/*   Updated: 2023/06/11 00:28:00 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-char	*ft_strdup(const char *s1)
+void	parse_line(t_data *data)
 {
-	char	*copy_s1;
-	int		s1_size;
-	int		i;
+	split_line_by_space(data);
+	check_line_exception(data);
+	get_process_data(data);
+}
 
-	s1_size = ft_strlen(s1);
-	copy_s1 = (char *) malloc(sizeof(char) * s1_size + 1);
-	if (copy_s1 == 0)
-		return (0);
-	i = 0;
-	while (s1[i] != '\0')
-	{
-		copy_s1[i] = s1[i];
-		i++;
-	}
-	copy_s1[i] = '\0';
-	return (copy_s1);
+void	split_line_by_space(t_data *data)
+{
+	data->input.space_split = ft_split(data->input.line, ' ');
+	if (data->input.space_split == (void *) 0)
+		execute_error_process((void *) 0, 1, data);
 }
