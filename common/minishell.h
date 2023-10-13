@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/07 21:43:58 by tayou             #+#    #+#             */
-/*   Updated: 2023/06/24 16:52:42 by tayou            ###   ########.fr       */
+/*   Created: 2023/06/21 11:36:39 by tayou             #+#    #+#             */
+/*   Updated: 2023/06/26 11:48:51 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalpha(int c)
-{
-	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
-		return (1);
-	else
-		return (0);
-}
+#ifndef MINISHELL_H
+# define MINISHELL_H
+
+# include "../parsing/parsing.h"
+# include "../builtin/builtin.h"
+# include "../excute/excute.h"
+
+void	check_argc(int argc, char **argv);
+void	make_initial_setting(char **envp, t_data *data);
+void	handle_signal(t_data *data);
+void	get_input_and_process_data(t_data *data);
+
+#endif

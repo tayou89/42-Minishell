@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: junyu <junyu@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/20 02:35:17 by tayou             #+#    #+#             */
-/*   Updated: 2023/06/14 14:51:48 by tayou            ###   ########.fr       */
+/*   Created: 2023/06/17 19:32:14 by junyu             #+#    #+#             */
+/*   Updated: 2023/06/21 18:57:12 by junyu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include"builtin.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+int	env(char **envp)
 {
-	t_list	*copy;
+	int	i;
+	int	error;
 
-	if (lst == NULL || del == NULL)
-		return ;
-	while (*lst != NULL)
+	i = 0;
+	while (envp[i] != 0)
 	{
-		copy = (*lst)->next;
-		ft_lstdelone(*lst, del);
-		*lst = copy;
+		error = 1;
+		if (ft_strchr(envp[i], '=') != 0)
+			error = printf("%s\n", envp[i]);
+		if (error < 0)
+		{
+			perror("env");
+			return (1);
+		}
+		i++;
 	}
-	*lst = NULL;
+	return (0);
 }

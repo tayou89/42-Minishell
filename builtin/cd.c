@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junyu <junyu@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 21:33:21 by tayou             #+#    #+#             */
-/*   Updated: 2023/06/21 19:09:00 by junyu            ###   ########.fr       */
+/*   Created: 2023/06/19 17:09:50 by junyu             #+#    #+#             */
+/*   Updated: 2023/06/19 17:24:27 by junyu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include"builtin.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+int	cd(int argc, char **argv)
 {
-	size_t	i;
+	int		result;
+	char	*error;
 
-	i = 0;
-	if (n == 0)
-		return ('\0');
-	while (s1[i] == s2[i] && i < n - 1 && s1[i] != '\0' && s2[i] != '\0')
+	if (argc >= 2)
 	{
-		i++;
+		result = chdir(argv[1]);
+		if (result != 0)
+		{
+			error = strerror(errno);
+			ft_putstr_fd("minishell: cd: ", 2);
+			ft_putstr_fd(argv[1], 2);
+			ft_putstr_fd(": ", 2);
+			ft_putstr_fd(error, 2);
+			ft_putstr_fd("\n", 2);
+			return (1);
+		}
 	}
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	return (0);
 }

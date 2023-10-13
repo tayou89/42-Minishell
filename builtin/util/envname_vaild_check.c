@@ -1,27 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   envname_vaild_check.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: junyu <junyu@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/09 21:33:21 by tayou             #+#    #+#             */
-/*   Updated: 2023/06/21 19:09:00 by junyu            ###   ########.fr       */
+/*   Created: 2023/06/19 18:04:34 by junyu             #+#    #+#             */
+/*   Updated: 2023/06/23 20:10:46 by junyu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include"../builtin.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+static int	env_rule(char ch)
 {
-	size_t	i;
+	if (ft_isdigit(ch))
+		return (1);
+	if (ft_isalpha(ch))
+		return (2);
+	if (ch == '_')
+		return (3);
+	return (0);
+}
 
-	i = 0;
-	if (n == 0)
-		return ('\0');
-	while (s1[i] == s2[i] && i < n - 1 && s1[i] != '\0' && s2[i] != '\0')
+int	envname_vaild_check(char *name)
+{
+	int	i;
+
+	i = 1;
+	if (env_rule(name[0]) < 2)
+		return (2);
+	while (name[i] != '\0')
 	{
+		if (name[i] == '=')
+			return (0);
+		if (env_rule(name[i]) == 0)
+			return (2);
 		i++;
 	}
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	return (1);
 }

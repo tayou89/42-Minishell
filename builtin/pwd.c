@@ -1,19 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: junyu <junyu@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/07 21:43:58 by tayou             #+#    #+#             */
-/*   Updated: 2023/06/24 16:52:42 by tayou            ###   ########.fr       */
+/*   Created: 2023/06/17 18:52:40 by junyu             #+#    #+#             */
+/*   Updated: 2023/06/17 19:38:08 by junyu            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalpha(int c)
+#include"builtin.h"
+
+int	pwd(void)
 {
-	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
+	char	*pwdstr;
+	int		error;
+
+	pwdstr = getcwd(0, 0);
+	if (pwdstr == 0)
+	{
+		perror("pwd");
 		return (1);
-	else
-		return (0);
+	}
+	error = printf("%s\n", pwdstr);
+	free(pwdstr);
+	if (error < 0)
+	{
+		perror("pwd");
+		return (1);
+	}
+	return (0);
 }

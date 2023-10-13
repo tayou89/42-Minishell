@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isalpha.c                                       :+:      :+:    :+:   */
+/*   check_argc.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tayou <tayou@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/07 21:43:58 by tayou             #+#    #+#             */
-/*   Updated: 2023/06/24 16:52:42 by tayou            ###   ########.fr       */
+/*   Created: 2023/06/09 14:33:42 by tayou             #+#    #+#             */
+/*   Updated: 2023/06/21 11:43:54 by tayou            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isalpha(int c)
+#include "minishell.h"
+
+void	check_argc(int argc, char **argv)
 {
-	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))
-		return (1);
-	else
-		return (0);
+	if (argc != 1 || argv[0] == (void *) 0)
+	{
+		printf("Error.\n");
+		printf("Wrong argument.\n");
+		exit(0);
+	}
 }
