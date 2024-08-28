@@ -54,7 +54,9 @@ Hello, World!
 -rw-r--r--  1 user  group  5678 Jan 2 13:00 file2.c
 
 `minishell> cat < input.txt > output.txt`
+
 `minishell> export MY_VAR=42`
+
 `minishell> echo $MY_VAR`
 
 42
