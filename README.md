@@ -1,5 +1,7 @@
 # Minishell
 
+<img width="1000" alt="Minishell Screen Shot" src="https://github.com/user-attachments/assets/cbf0975c-9ede-4867-b16b-7b8d4047a51d">
+
 Minishell is a simple shell implementation, inspired by bash. This project is part of the 42 school curriculum.
 
 ## Table of Contents
