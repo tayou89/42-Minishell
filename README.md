@@ -40,20 +40,23 @@ The shell supports various built-in commands and features, including:
 Example usage:
 
 `minishell> echo Hello, World!`
+
 Hello, World!
 
 `minishell> pwd`
+
 /path/to/current/directory
 
 `minishell> ls -l | grep .c`
+
 -rw-r--r--  1 user  group  1234 Jan 1 12:00 file1.c
+
 -rw-r--r--  1 user  group  5678 Jan 2 13:00 file2.c
 
 `minishell> cat < input.txt > output.txt`
-```
-minishell> export MY_VAR=42
-minishell> echo $MY_VAR
-```
+`minishell> export MY_VAR=42`
+`minishell> echo $MY_VAR`
+
 42
 
 `minishell> exit`
